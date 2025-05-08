@@ -1,0 +1,57 @@
+.event{
+    width: 90%;
+    display: block;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    color: var(--color-text-dark);
+    text-align: left;
+    border: 0;
+    border-radius: var(--border-radius-md);
+    padding: 1rem 0.5rem;
+    background-color: transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   
+}
+
+.event-filled{
+    background-color: rgb(158, 206, 184);
+    color: var(--color-text-light);
+}
+.event-dynamic {
+    position: absolute;
+    top: 12.5%;
+   right: 0;
+   bottom: 75%;
+   left: 0;
+   width: unset;
+   border-radius: var(--color-white);
+   white-space: unset;
+   overflow: unset;
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+}
+  
+.event-color{
+    display: inline-block;
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: orange;
+    margin-right: 0.25rem;
+}
+.event-filled .event-color::after{
+    display: none;
+}
+.event-time{
+    display: none;
+}
+.event-dynamic .event-time{
+display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
