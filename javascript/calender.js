@@ -6,19 +6,19 @@ export function initCalender(){
            const selectedView = event.detail.view;
            if(selectedView === "Month"){
             monthCalenederElement.style.display="flex"
-  
+             weekCalenederElement.style.display="none"
            }
            else{
             monthCalenederElement.style.display="none"
-            
+             weekCalenederElement.style.display="none"
            }
            if(selectedView === "Week"){
             weekCalenederElement.style.display="flex"
-             
+             monthCalenederElement.style.display="none"
            }
            else{
             weekCalenederElement.style.display="none"
-              
+            monthCalenederElement.style.display="none"  
            }
            
         }
