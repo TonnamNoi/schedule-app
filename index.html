@@ -339,6 +339,13 @@
                     
                   </button>
                 </li>
+                  <li class="day-of-week">
+                  <button class="day-of-week-button">
+                    <span class="day-of-week-day">user</span>
+                    <span class="day-of-week-number">5</span>
+                    
+                  </button>
+                </li>
                 
               </ul>
               <ul class="tab-all-day">
@@ -632,17 +639,37 @@
      <div class="dialog-wrapper">
       <div class="dialog-head">
         <h2 class="dialog-title">Create event</h2>
-        <button class="button button--icon button--secondary">
+        <button class="button button--icon button--secondary" type="button" close-button-icon>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
       <div class="dialog-content">
-         form field
+         <div class="form-fields">
+           <div class="form-field">
+<label class="form-label" for="date">Title</label>
+<input class="input input--fill" id="title" name="title" type="text" placeholder="my event" required autofocus/>
+           </div>
+            <div class="form-field">
+              <label class="form-label" for="date">Date</label>
+              <input class="input input--fill" id="date" name="title" type="date" required autofocus/>
+            </div>
+            <div class="form-split">
+               <div class="form-field">
+                <label class="form-label" for="start-time">Start time</label>
+                <div class="select select--fill">
+                <select class="selectEL" id="start-time" name="start-time">
+                   
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="select_icon"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+               </div>
+            </div>
+         </div>>
       </div>
       <div class="dialog-footer">
         <div class="dialog-actions">
           <button class="button button--secondary" type="button" close-button-icon>Cancel</button>
-          <button class="button button-primary">save</button>
+          <button class="button button-primary">Save</button>
         </div>
       </div>
      </div>
