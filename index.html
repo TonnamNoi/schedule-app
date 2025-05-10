@@ -52,14 +52,14 @@
             </div>
             <div class="select desktop-only">
                 <select class="selectEL" data-view-select>
-                   
+                   <!-- Select view between the day you want and booking View-->
                     <option class="week">Week</option>
                     <option class="month"selected>Month</option>
                 </select>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="select_icon"><path d="m6 9 6 6 6-6"/></svg>
             </div>
             </div>
-  
+            <!-- day-->
             <div class="calender">
               <div class="month-calender fiveweek"data-month-calender>
                 <ul class="day-list">
@@ -94,6 +94,7 @@
                             </ul>
                         </div>
                       </li>
+                      <!-- day of month-->
                       <li class="month-calender-day">
                         <button class="month-calender-day-label">1</button>
                         <div class="month-calender-day-event">
@@ -302,6 +303,7 @@
                     </ul>
                 </div>
               </div>
+              <!-- Owner and user part-->
              <div class="week-calender week-calender--day" data-week-calender style="display: none;">
               <ul class="day-of-week-list"> 
                 <li class="day-of-week">
@@ -372,6 +374,7 @@
                 <ul class="event-list"></ul>
                </li>
               </ul>
+              <!-- User cell-->
               <div class="content-main">
                 <div class="content-inner">
                   <ul class="time-list">
@@ -448,6 +451,7 @@
                       <time class="calender-time">11:00PM</time>
                     </li>
                   </ul>
+                  <!-- User week column-->
                   <div class="week-columns">
                     <div class="week-column">
                       <div class="cell-item"></div>
@@ -632,10 +636,10 @@
              
             </div>
         </main>
-    
+    <!-- Create event dialog-->
    </div>
    <dialog class="dialog" data-dialog="event-form">
-    <form class="form">
+    <form class="form" data-event-form>
      <div class="dialog-wrapper">
       <div class="dialog-head">
         <h2 class="dialog-title">Create event</h2>
@@ -643,29 +647,60 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
+      <!-- Title and Date in dailog-->
       <div class="dialog-content">
          <div class="form-fields">
            <div class="form-field">
-<label class="form-label" for="date">Title</label>
-<input class="input input--fill" id="title" name="title" type="text" placeholder="my event" required autofocus/>
+             <label class="form-label" for="date">Title</label>
+             <input class="input input--fill" id="title" name="title" type="text" placeholder="my event" required autofocus/>
            </div>
             <div class="form-field">
               <label class="form-label" for="date">Date</label>
               <input class="input input--fill" id="date" name="title" type="date" required autofocus/>
             </div>
-            <div class="form-split">
-               <div class="form-field">
-                <label class="form-label" for="start-time">Start time</label>
-                <div class="select select--fill">
-                <select class="selectEL" id="start-time" name="start-time">
-                   
-                </select>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="select_icon"><path d="m6 9 6 6 6-6"/></svg>
+           
+           <div class="form-field">
+            <label class="form-label" for="color">Color</label>
+            <div class="color-select">
+              <label class="color-select-item" style="--color-select-item-color: #2563eb">
+                <input class="color-select-input" type="radio" name="color" value="#2563eb">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
+              <label class="color-select-item" style="--color-select-item-color:#DC143C">
+                <input class="color-select-input" type="radio" name="color" value="#DC143C">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
+              <label class="color-select-item" style="--color-select-item-color: #E9967A">
+                <input class="color-select-input" type="radio" name="color" value="#E9967A">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
+              <label class="color-select-item" style="--color-select-item-color: #006400">
+                <input class="color-select-input" type="radio" name="color" value="#006400">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
+              <label class="color-select-item" style="--color-select-item-color: #2563eb">
+                <input class="color-select-input" type="radio" name="color" value="#2563eb">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
+              <label class="color-select-item" style="--color-select-item-color: #483D8B">
+                <input class="color-select-input" type="radio" name="color" value="#483D8B">
+                <div class="color-select-color">
+                   <div class="color-select-inner"></div>    
+                </div>
+              </label>
             </div>
-               </div>
-            </div>
-         </div>>
-      </div>
+           </div>
+          </div>
       <div class="dialog-footer">
         <div class="dialog-actions">
           <button class="button button--secondary" type="button" close-button-icon>Cancel</button>

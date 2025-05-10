@@ -1,0 +1,93 @@
+div.a {
+  line-height: 10px;
+}
+
+div.b {
+  line-height: 30px;
+}
+
+div.c {
+  line-height: 0.5cm;
+}
+
+div.d {
+  line-height: 1cm;
+}
+:root{
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md:1rem;
+    --font-size-2xl:1.5rem;
+    --line-height-xs: 1rem;
+    --line-height-sm: 1.25rem;
+    --line-height-md: 1.25rem;
+    --line-height-2xl:2rem;
+    --border-radius-md: 0.25rem;
+    --duration-sm: 100ms;
+    --color-gray-100: #f3f4f6;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9cacaf;
+    --color-gray-500: #6b7280;
+    --color-white:#ffffff;
+    --color-text-dark:#050505;
+    
+    --color-text-300: #d1d5db;
+    --color-white-100: #f9fafb;
+    --color-littlegray: #484545;
+    --font-size-lg:1.125rem;
+    --line-height-lg: 1.75rem;
+    --box-shadow-md:0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: dodgerblue;
+  padding: 10px;
+}
+.container > div {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+#main {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #c3c3c3;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#main div {
+  width: 50px;
+  height: 50px;}
+
+
+  #main {
+  width: 220px;
+  height: 300px;
+  border: 1px solid black; 
+  display: flex;
+  align-items: center;
+}
+
+#main div {
+  flex: 1;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;}

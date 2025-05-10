@@ -19,6 +19,7 @@ function close(){
         }
     })
     return {
+        dialogElement,
         open() {
             dialogElement.showModal();
         },

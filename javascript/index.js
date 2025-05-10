@@ -9,9 +9,10 @@ Eventformdialog();
 initViewSelect();
 initCalender();
 Eventbutton();
+
 document.addEventListener('DOMContentLoaded', function () {
   const columns = document.querySelectorAll('.week-column');
-  const bookings = {}; // Format: { rowIndex: Map(columnIndex => userColor) }
+  const bookings = {}; 
   const userColors = ['#A5D8FF', '#FFD6A5', '#FFADAD', '#CAFFBF', '#FDFFB6', '#D0BBFF']; // 6 users
 
   columns.forEach((column, columnIndex) => {
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const cell = document.querySelectorAll('.week-column')[col]
             .querySelectorAll('.cell-item')[row];
           if (cell) {
-            cell.style.backgroundColor = '#4169E1'; // Intersect color
+            cell.style.backgroundColor = '#4169E1'; 
             cell.dataset.intersected = 'true';
           }
         });
