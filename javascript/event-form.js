@@ -1,46 +1,42 @@
-import {validateEvent } from "./validate.js";
-export function InitEventForm(toaster){
-    const formElement = document.querySelector("[data-event-form]")
+import { validateEvent } from "./validate.js";
 
-    formElement.addEventListener("submit",(event)=>
-    {   event.preventDefault();
+export function InitEventForm(toaster) {
+    const formElement = document.querySelector("[data-event-form]");
+
+    formElement.addEventListener("submit", (event) => {
+        event.preventDefault();
         const formEvent = formIntoEvent(formElement);
-        const validation = validateEvent(formEvent);
-        if(validation != null){
-            alert(validation)
-            return;
+        
+        try {
+            validateEvent(formEvent);
+            formElement.dispatchEvent(new CustomEvent("event-create", {
+                detail: {
+                    event: formEvent
+                },
+                bubbles: true
+            }));
+        } catch (error) {
+            if (toaster) {
+                toaster.error(error.message);
+            } else {
+                alert(error.message);
+            }
         }
-           formElement.dispatchEvent(new CustomEvent("event-create",{
-        detail: {
-            event: formEvent
-        },
-        bubbles:true
+    });
 
-    }))
-    return{
+    return {
         formElement,
-        reset(){
+        reset() {
             formElement.reset();
         }
     };
-
-
-
-    });
- 
 }
 
-function formIntoEvent(formElement){
+function formIntoEvent(formElement) {
     const formData = new FormData(formElement);
-    const title = formData.get("title");
-    const date = formData.get("date");
-    const color = formData.get("color")
-
-const event ={
-    title,
-    date: new Date(date),
-    color
-};
-return event;
+    return {
+        title: formData.get("title"),
+        date: new Date(formData.get("date")),
+        color: formData.get("color")
+    };
 }
-
