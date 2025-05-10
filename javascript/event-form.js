@@ -1,20 +1,34 @@
-export function InitEventForm(){
+import {validateEvent } from "./validate.js";
+export function InitEventForm(toaster){
     const formElement = document.querySelector("[data-event-form]")
 
     formElement.addEventListener("submit",(event)=>
     {   event.preventDefault();
         const formEvent = formIntoEvent(formElement);
-        console.log(formEvent)
+        const validation = validateEvent(formEvent);
+        if(validation != null){
+            alert(validation)
+            return;
+        }
+           formElement.dispatchEvent(new CustomEvent("event-create",{
+        detail: {
+            event: formEvent
+        },
+        bubbles:true
 
-    });
+    }))
     return{
+        formElement,
         reset(){
             formElement.reset();
         }
     };
 
-}
 
+
+    });
+ 
+}
 
 function formIntoEvent(formElement){
     const formData = new FormData(formElement);

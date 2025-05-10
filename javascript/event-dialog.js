@@ -1,16 +1,21 @@
 import {initdialog} from "./dialog.js";
 import { InitEventForm } from "./event-form.js";
+import {InitToaster} from "./toaster.js";
 
 export function Eventformdialog(){
     const dialog = initdialog("event-form")
-    const eventform= InitEventForm();
+    const toaster = InitToaster(dialog.dialogElement)
+    const eventform = InitEventForm();
 
-
-
-    document.addEventListener("create-event-request",()=>{
-      dialog.open();
+    document.addEventListener("create-event-request", () => {
+        dialog.open();
     });
-    dialog.dialogElement.addEventListener("close",()=>{
-  eventform.reset();
+
+    dialog.dialogElement.addEventListener("close", () => {
+        eventform.reset();
+    });
+
+    eventform.formElement.addEventListener("event-create", () => {
+        dialog.close();
     });
 }
