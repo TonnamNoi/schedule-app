@@ -36,10 +36,6 @@ if ($stmt->execute()) {
         }
     }
 
-    // Optionally add owner to invitees list
-    $invite_stmt->bind_param("ii", $meeting_id, $owner_id);
-    $invite_stmt->execute();
-
     $invite_stmt->close();
     $stmt->close();
     $conn->close();
