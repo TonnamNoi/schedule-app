@@ -6,7 +6,7 @@ export function initCalender() {
         const selectedView = event.detail.view;
 
         if (selectedView === "Month") {
-            console.log("month time")
+            monthCalenderElement.style.display = "flex";
         } else if (selectedView === "Week") {
             monthCalenderElement.style.display = "none";
             weekCalenderElement.style.display = "flex";

@@ -5,6 +5,9 @@ import { Eventformdialog } from "./event-dialog.js";
 //import { initCalendar } from "./month-calender2.js";
 import{initnotification} from "./notification.js"
 import { initEventStore} from "./event-store.js";
+
+
+
   Eventformdialog();
   initViewSelect();
   initCalender();
