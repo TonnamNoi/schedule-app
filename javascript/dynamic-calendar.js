@@ -1,4 +1,4 @@
-// dynamic-calendar.js
+/* dynamic-calendar.js
 
 export function initDynamicCalendar(container = document.querySelector('[data-calendar-container]'), date = new Date()) {
   const currentYear = date.getFullYear();
@@ -80,3 +80,4 @@ export function initDynamicCalendar(container = document.querySelector('[data-ca
 function getDateKey(year, month, day) {
   return `${year}-${month + 1}-${day}`;
 }
+*/
