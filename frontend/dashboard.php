@@ -102,11 +102,15 @@ $conn->close();
             <br>
             <p><?= htmlspecialchars($invite['description']) ?></p>
             <br>
-            <form action="../backend/accept_invite.php" method="POST">
-                <input type="hidden" name="meeting_id" value="<?= $invite['id'] ?>">
-                <button type="submit" class="btn-accept">Accept</button>
+            <form method="POST" action="../backend/accept_invited.php">
+                <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
+                <button type="submit" class="accept-button">Accept</button>
             </form>
-            <button onclick="closePopup(<?= $invite['id'] ?>)" class="btn-decline">Close</button>
+            <form method="POST" action="../backend/decline_invited.php">
+                <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
+                <button type="submit" class="decline-button">Decline</button>
+            </form>
+            <button class="popup-close">&times;</button>
         </div>
     </div>
     <?php endforeach; ?>
