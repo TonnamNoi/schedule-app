@@ -455,7 +455,7 @@
               <label class="form-label" for="date">Date</label>
               <input class="input input--fill" id="date" name="title" type="date" required autofocus/>
             </div>
-            <div class="form-split">
+           <div class="form-split">
               <div class="form-field">
                 <label class="form-label" for="start-time">Start time</label>
                 <div class="select select--fill">
@@ -510,11 +510,7 @@
                     <option value="1410">11:30 PM</option>
                   </select>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="select__icon">
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
+                 
                 </div>
               </div>
 
@@ -572,14 +568,10 @@
                     <option value="1440">12:00 AM</option>
                   </select>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="select__icon">
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
+                 
                 </div>
               </div>
-            </div>
+         
            
            <div class="form-field">
             <label class="form-label" for="color">Color</label>
@@ -674,7 +666,7 @@
               </div>
    </template>
    <template data-template="month-calender-day">
-        <li class="month-calender-day" first-month-calender-day>
+        <li class="month-calender-day" fsts-month-calender-day>
                         <button class="month-calender-day-label" data-month-calender-day-label></button>
                         <div class="month-calender-day-event" data-calneder-list-wrapper>
                             <ul class="event-list" data-event-list></ul>
@@ -688,12 +680,13 @@
    </template>
    <template data-template="event">
     <button class="event" data-event>
-                        <span class="event-color"></span>
-                        <span class="event-title" data-event-title>
-                        </span>
-                        <span class="event-time">
-                        </span>
-                      </button>
+      <span class="event-color"></span>
+       <span class="event-title" data-event-title>
+         </span>
+        <span class="event-time">
+          <time></time>-<time></time>
+         </span>
+       </button>
    </template>
 </body>
 </html>

@@ -6,12 +6,12 @@
 }
 .form-split{
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 .form-field{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 .form-split .form-field{
     flex: 1;
@@ -28,4 +28,20 @@
     border: 1px solid var(--color-gray-500);
     padding: 0.4rem 0.75rem;
    
+}
+#start-time{
+     font-size: var(--font-size-sm);
+    font-weight: 400;
+    background-color: transparent;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-gray-500);
+    padding: 0.4rem 0.4rem;
+}
+#end-time{
+     font-size: var(--font-size-sm);
+    font-weight: 400;
+    background-color: transparent;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-gray-500);
+    padding: 0.4rem 0.4rem;
 }

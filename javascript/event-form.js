@@ -1,5 +1,6 @@
 import { validateEvent } from "./validate.js";
 
+
 export function InitEventForm(toaster) {
     const formElement = document.querySelector("[data-event-form]");
 
@@ -10,7 +11,7 @@ export function InitEventForm(toaster) {
         const validationError = validateEvent(formEvent);
         console.log(formEvent);
         if (validationError !== null) {
-            alert(validationError);  // Show toast with the error message
+           alert(validationError);  // Show toast with the error message
             return;
         }
 
@@ -41,11 +42,12 @@ export default function formIntoEvent(formElement) {
        const startTime = formData.get("start-time");
        const endTime = formData.get("end-time")
 const event = {
- title,
+        title,
         date: new Date(date),          // Properly create a Date object from the date value
         startTime: startTime ? parseInt(startTime, 10) : null, // Convert start-time to an integer
         color,
         endTime: endTime ? parseInt(endTime, 10) : null  
 };
+return event;
     
 }

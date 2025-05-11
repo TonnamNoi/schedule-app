@@ -17,9 +17,9 @@
 .color-select-color{
     width: 2rem;
     height: 2rem;
-    padding: 0.25rem;
+    padding: 0.2rem;
     border-radius: 50%;
-    border: 0.125rem solid var(--color-gray-500);
+    border: 0.1rem solid var(--color-gray-500);
     transition: border-color var(--duration-sm) ease-out;
 }
 .color-select-input:checked + .color-select-color{
