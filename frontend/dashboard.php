@@ -106,11 +106,10 @@ $conn->close();
                 <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
                 <button type="submit" class="accept-button">Accept</button>
             </form>
-            <form method="POST" action="../backend/decline_invited.php">
+            <form method="POST" class="decline-form">
                 <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
                 <button type="submit" class="decline-button">Decline</button>
             </form>
-            <button class="popup-close">&times;</button>
         </div>
     </div>
     <?php endforeach; ?>

@@ -13,8 +13,9 @@ $meeting_id = intval($_POST['meeting_id']);
 $stmt = $conn->prepare("UPDATE meeting_invitees SET status = 'accepted' WHERE meeting_id = ? AND user_id = ?");
 $stmt->bind_param("ii", $meeting_id, $user_id);
 $stmt->execute();
+
 $stmt->close();
 $conn->close();
 
-header("Location: ../frontend/meeting_page.php?meeting_id=$meeting_id"); // Update path if needed
+header("Location: ../frontend/meeting_page.php?meeting_id=$meeting_id");
 exit();

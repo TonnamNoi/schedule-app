@@ -1,0 +1,1 @@
+Updated meeting invite status for meeting_id 0 and user_id 1
