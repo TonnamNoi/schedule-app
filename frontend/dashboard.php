@@ -26,7 +26,7 @@ require_once '../backend/db.php';
 $user_id = $_SESSION['user_id'];
 $pendingInvites = [];
 
-$sql = "SELECT m.id, m.title, m.description 
+$sql = "SELECT m.id AS meeting_id, m.title, m.description 
         FROM meetings m
         JOIN meeting_invitees mi ON m.id = mi.meeting_id
         WHERE mi.user_id = ? AND mi.status = 'pending'";
@@ -106,10 +106,11 @@ $conn->close();
                 <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
                 <button type="submit" class="accept-button">Accept</button>
             </form>
-            <form method="POST" class="decline-form">
+            <form method="POST" action="../backend/decline_invited.php">
                 <input type="hidden" name="meeting_id" value="<?php echo $invite['meeting_id']; ?>">
                 <button type="submit" class="decline-button">Decline</button>
             </form>
+            <!-- <?php var_dump($invite); ?> -->
         </div>
     </div>
     <?php endforeach; ?>
