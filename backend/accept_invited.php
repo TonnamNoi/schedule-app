@@ -17,5 +17,6 @@ $stmt->execute();
 $stmt->close();
 $conn->close();
 
+// Redirect user to meeting page
 header("Location: ../frontend/meeting_page.php?meeting_id=$meeting_id");
 exit();
