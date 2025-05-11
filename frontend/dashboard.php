@@ -21,6 +21,26 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 // Update last activity timestamp to current time
 $_SESSION['last_activity'] = time();
 
+require_once '../backend/db.php';
+
+$user_id = $_SESSION['user_id'];
+$pendingInvites = [];
+
+$sql = "SELECT m.id, m.title, m.description 
+        FROM meetings m
+        JOIN meeting_invitees mi ON m.id = mi.meeting_id
+        WHERE mi.user_id = ? AND mi.status = 'pending'";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+    $pendingInvites[] = $row;
+}
+
+$stmt->close();
+$conn->close();
 
 ?>
 
@@ -70,5 +90,19 @@ $_SESSION['last_activity'] = time();
             </section>
         </div>
     </div>
+
+    <?php foreach ($pendingInvites as $invite): ?>
+    <div class="invite-popup" id="invite-<?= $invite['id'] ?>">
+        <div class="popup-content">
+            <h3>You're invited to: <?= htmlspecialchars($invite['title']) ?></h3>
+            <p><?= htmlspecialchars($invite['description']) ?></p>
+            <form action="../backend/accept_invite.php" method="POST">
+                <input type="hidden" name="meeting_id" value="<?= $invite['id'] ?>">
+                <button type="submit" class="btn-accept">Accept</button>
+            </form>
+            <button onclick="closePopup(<?= $invite['id'] ?>)" class="btn-decline">Close</button>
+        </div>
+    </div>
+    <?php endforeach; ?>
 </body>
 </html>
