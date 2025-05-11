@@ -104,5 +104,7 @@ $conn->close();
         </div>
     </div>
     <?php endforeach; ?>
+
+    <script src="../javascript/invitePopup.js"></script>
 </body>
 </html>
