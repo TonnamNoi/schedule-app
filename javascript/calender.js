@@ -1,26 +1,19 @@
-export function initCalender(){
-    const monthCalenederElement= document.querySelector("[data-month-calender]");
-    const weekCalenederElement= document.querySelector("[data-week-calender]");
-    document.addEventListener("view-change",  
-        (event)=>{
-           const selectedView = event.detail.view;
-           if(selectedView === "Month"){
-            monthCalenederElement.style.display="flex"
-             
-           }
-           else{
-            monthCalenederElement.style.display="none"
+export function initCalender() {
+    const monthCalenderElement = document.querySelector("[data-month-calender]");
+    const weekCalenderElement = document.querySelector("[data-week-calender]");
+
+    document.addEventListener("view-change", (event) => {
+        const selectedView = event.detail.view;
+
+        if (selectedView === "Month") {
+            console.log("month time")
+        } else if (selectedView === "Week") {
+            monthCalenderElement.style.display = "none";
+            weekCalenderElement.style.display = "flex";
+        } else {
             
-           }
-           if(selectedView === "Week"){
-            weekCalenederElement.style.display="flex"
-           
-           }
-           else{
-            weekCalenederElement.style.display="none"
-              
-           }
-           
+            monthCalenderElement.style.display = "none";
+            weekCalenderElement.style.display = "none";
         }
-    );
-};
+    });
+}

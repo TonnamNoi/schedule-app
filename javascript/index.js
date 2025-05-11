@@ -1,14 +1,14 @@
-import {initViewSelect} from "./viewselect.js" ;
+import { initViewSelect } from "./viewselect.js";
 import { initCalender } from "./calender.js";
-import {Eventbutton} from "./event-create-button.js";
+import { Eventbutton } from "./event-create-button.js";
 import { Eventformdialog } from "./event-dialog.js";
+//import { initCalendar } from "./month-calender2.js";
 
-
-
-Eventformdialog();
-initViewSelect();
-initCalender();
-Eventbutton();
+  Eventformdialog();
+  initViewSelect();
+  initCalender();
+  Eventbutton();
+  //initCalendar();
 
 document.addEventListener('DOMContentLoaded', function () {
   const columns = document.querySelectorAll('.week-column');

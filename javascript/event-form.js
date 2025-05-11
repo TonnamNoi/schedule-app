@@ -6,22 +6,22 @@ export function InitEventForm(toaster) {
     formElement.addEventListener("submit", (event) => {
         event.preventDefault();
         const formEvent = formIntoEvent(formElement);
-        
-        try {
-            validateEvent(formEvent);
-            formElement.dispatchEvent(new CustomEvent("event-create", {
-                detail: {
-                    event: formEvent
-                },
-                bubbles: true
-            }));
-        } catch (error) {
-            if (toaster) {
-                toaster.error(error.message);
-            } else {
-                alert(error.message);
-            }
+
+        const validationError = validateEvent(formEvent);
+        console.log(formEvent);
+        if (validationError !== null) {
+            alert(validationError);  // Show toast with the error message
+            return;
         }
+
+       
+
+        formElement.dispatchEvent(new CustomEvent("event-create", {
+            detail: {
+                event: formEvent
+            },
+            bubbles: true
+        }));
     });
 
     return {
@@ -32,11 +32,20 @@ export function InitEventForm(toaster) {
     };
 }
 
-function formIntoEvent(formElement) {
+export default function formIntoEvent(formElement) {
     const formData = new FormData(formElement);
-    return {
-        title: formData.get("title"),
-        date: new Date(formData.get("date")),
-        color: formData.get("color")
-    };
+    
+       const title= formData.get("title");
+       const  date= formData.get("date");
+       const color= formData.get("color");
+       const startTime = formData.get("start-time");
+       const endTime = formData.get("end-time")
+const event = {
+ title,
+        date: new Date(date),          // Properly create a Date object from the date value
+        startTime: startTime ? parseInt(startTime, 10) : null, // Convert start-time to an integer
+        color,
+        endTime: endTime ? parseInt(endTime, 10) : null  
+};
+    
 }

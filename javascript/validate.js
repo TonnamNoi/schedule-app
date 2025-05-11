@@ -1,12 +1,11 @@
+// Import the formIntoEvent function
+
+
 export function validateEvent(event) {
-    if (!event.title || event.title.trim() === '') {
-        throw new Error('Event title is required');
-    }
-    if (!event.date || isNaN(new Date(event.date).getTime())) {
-        throw new Error('Valid date is required');
-    }
-    if (!event.color) {
-        throw new Error('Color selection is required');
-    }
-    return true; 
+  // Ensure startTime and endTime are provided correctly as numbers
+  if (event.startTime >= event.endTime) {
+    return "Event end time must be after the start time";
+  }
+
+  return null; // Validation passes
 }
