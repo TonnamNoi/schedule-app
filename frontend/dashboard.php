@@ -94,8 +94,14 @@ $conn->close();
     <?php foreach ($pendingInvites as $invite): ?>
     <div class="invite-popup" id="invite-<?= $invite['id'] ?>">
         <div class="popup-content">
-            <h3>You're invited to: <?= htmlspecialchars($invite['title']) ?></h3>
+            <h3>You're invited to: </h3>
+            <br>
+            <h2><?= htmlspecialchars($invite['title']) ?></h2>
+            <br>
+            <hr>
+            <br>
             <p><?= htmlspecialchars($invite['description']) ?></p>
+            <br>
             <form action="../backend/accept_invite.php" method="POST">
                 <input type="hidden" name="meeting_id" value="<?= $invite['id'] ?>">
                 <button type="submit" class="btn-accept">Accept</button>
