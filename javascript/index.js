@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const bookings = {}; 
   const userColors = ['#A5D8FF', '#FFD6A5', '#FFADAD', '#CAFFBF', '#FDFFB6', '#D0BBFF']; // 6 users
 
+  // Restore saved bookings from localStorage
+  const saved = JSON.parse(localStorage.getItem('weekBookings')) || {};
+  for (const row in saved) {
+    bookings[row] = new Map(Object.entries(saved[row]));
+  }
+
   columns.forEach((column, columnIndex) => {
     const cells = column.querySelectorAll('.cell-item');
 
@@ -30,9 +36,14 @@ document.addEventListener('DOMContentLoaded', function () {
       cell.dataset.row = rowIndex;
       cell.dataset.col = columnIndex;
 
+      const savedColor = bookings[rowIndex]?.get(String(columnIndex));
+      if (savedColor) {
+        cell.style.backgroundColor = savedColor;
+      }
+
       cell.addEventListener('click', function () {
         const userColor = userColors[columnIndex];
-        const isBooked = bookings[rowIndex]?.has(columnIndex);
+        const isBooked = bookings[rowIndex]?.has(String(columnIndex));
 
         if (isBooked) {
           cell.style.backgroundColor = '';
@@ -41,31 +52,40 @@ document.addEventListener('DOMContentLoaded', function () {
           cell.style.backgroundColor = userColor;
           addBooking(rowIndex, columnIndex, userColor);
         }
+
         updateIntersections();
+        saveToLocalStorage(); // Auto-save after every change
       });
     });
   });
 
   function addBooking(row, col, color) {
     if (!bookings[row]) bookings[row] = new Map();
-    bookings[row].set(col, color);
+    bookings[row].set(String(col), color);
   }
 
   function removeBooking(row, col) {
     if (bookings[row]) {
-      bookings[row].delete(col);
+      bookings[row].delete(String(col));
       if (bookings[row].size === 0) delete bookings[row];
     }
   }
 
+  function saveToLocalStorage() {
+    const simplified = {};
+    for (const row in bookings) {
+      simplified[row] = Object.fromEntries(bookings[row]);
+    }
+    localStorage.setItem('weekBookings', JSON.stringify(simplified));
+  }
+
   function updateIntersections() {
-    // Reset all cells
     document.querySelectorAll('.cell-item').forEach(cell => {
       const row = parseInt(cell.dataset.row);
       const col = parseInt(cell.dataset.col);
 
-      if (bookings[row]?.has(col)) {
-        cell.style.backgroundColor = bookings[row].get(col);
+      if (bookings[row]?.has(String(col))) {
+        cell.style.backgroundColor = bookings[row].get(String(col));
       } else {
         cell.style.backgroundColor = '';
       }
@@ -73,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
       cell.dataset.intersected = 'false';
     });
 
-    // Highlight intersections
     for (const row in bookings) {
       if (bookings[row].size > 1) {
         bookings[row].forEach((_, col) => {
@@ -87,4 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   }
+
+  updateIntersections(); // Apply intersection highlight after restoring
 });
+
+
+
+

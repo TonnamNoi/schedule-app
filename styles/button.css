@@ -31,3 +31,35 @@
     width: 16px;
     
 }
+
+#prevMonth{
+        font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    font-weight: 400;
+    border-radius: var(--border-radius-md);
+    border: none;
+    padding: 0 16px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color var(--duration-sm) ease-out;
+       background-color: var(--color-white-100); /* nice light background */
+    border: 1px solid var(--color-gray-300);
+    color: var(--color-text-white);
+    gap: 1rem;
+
+}
+#nextMonth{
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    font-weight: 400;
+    border-radius: var(--border-radius-md);
+    border: none;
+    padding: 0 16px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color var(--duration-sm) ease-out;
+       background-color: var(--color-white-100); /* nice light background */
+    border: 1px solid var(--color-gray-300);
+    color: var(--color-text-white);
+    gap: 1rem;
+}

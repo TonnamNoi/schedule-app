@@ -23,29 +23,10 @@
                 </button>
             <div class="nav_data-info">
               <div class="control">
-                 <button class="button button--secondary desktop-only">Today</button>
-                 <button class="button button--icon button--second button--secondary mobile-only">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button_icon">
-                        <path d="M8 2v4"/>
-                        <path d="M16 2v4"/>
-                        <rect width="18" height="18" x="3" y="4" rx="2"/>
-                        <path d="M3 10h18"/>
-                        <path d="M8 14h.01"/>
-                        <path d="M12 14h.01"/>
-                        <path d="M16 14h.01"/><path d="M8 18h.01"/>
-                        <path d="M12 18h.01"/><path d="M16 18h.01"/>
-                    </svg>
-                 </button>
+              
                  <div class="arrow">
-                   <button class="button button--icon button--secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
-                   </button>
-                   <button class="button button--icon button--secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right">
-                        <path d="M18 8L22 12L18 16"/>
-                        <path d="M2 12H22"/></svg>
-                   </button>
-                   <time class="date">april 2025 </time>
+                   
+                   <time class="date"> </time>
                  </div>
               </div>
               
@@ -62,6 +43,13 @@
             <!-- day-->
             <div class="calender" data-calender>
               <div class="month-calender fiveweek"data-month-calender>
+                 <template data-template="month-calender">
+    <div class="month-calender"data-month-calender>
+      <div class="calender1">
+     <button id="prevMonth">←</button>
+      <div id="monthYearLabel"></div>
+        <button id="nextMonth">→</button>
+                                  </div>
                 <ul class="day-list">
                   <li class="days">Sunday</li>
                   <li class="days">Monday</li>
@@ -72,24 +60,9 @@
                   <li class="days">Saturday</li>
                 </ul>
                 <div class="day-list-wrap">
-                    <ul class="month-calender-day-list">
+                    <ul class="month-calender-day-list" data-month-calender-day-list>
                       <li class="month-calender-day">
-                        <button class="month-calender-day-label">30</button>
-                        <div class="month-calender-day-event">
-                            <ul class="event-list">
-                              <li class="event-list-item">
-                                <button class="event event-filled">
-                                  <span></span>
-                                  <span class="event-title">My first event
-                                  </span>
-                                </button>
-                              </li>
-                              <li class="event-list-item">
-                                <button class="event ">
-                                  <span class="event-color"></span>
-                                  <span class="event-title">My second event
-                                  </span>
-                                </button>
+                        
                               </li>
                             </ul>
                         </div>
@@ -100,6 +73,33 @@
                     </ul>
                 </div>
               </div>
+   </template>
+   <template data-template="month-calender-day">
+        <li class="month-calender-day" fsts-month-calender-day>
+          <button class="month-calender-day-label" data-month-calender-day-label></button>
+               <div class="month-calender-day-event" data-calneder-list-wrapper>
+               <ul class="event-list" data-event-list></ul>
+                 </div>
+           </li>
+   </template>
+   <div id="calendarRoot"></div>
+   <template data-template="event-list-item">
+      <li class="event-list-item" data-event-list-item>
+          
+         </li>
+   </template>
+   <template data-template="event">
+    <button class="event" data-event>
+      <span class="event-color"></span>
+       <span class="event-title" data-event-title>
+         </span>
+        <span class="event-time">
+          
+         </span>
+       </button>
+   </template>
+                </div>
+             
               <!-- Owner and user part-->
              <div class="week-calender week-calender--day" data-week-calender style="display: none;">
               <ul class="day-of-week-list"> 
@@ -156,7 +156,9 @@
                       <span class="event-title">My first event</span>
                     </button>
                   </li>
+                 
                 </ul>
+                
                </li>
                <li class="tab-all-day-item">
                 <ul class="event-list"></ul>
@@ -171,6 +173,7 @@
                 <ul class="event-list"></ul>
                </li>
               </ul>
+              
               <!-- User cell-->
               <div class="content-main">
                 <div class="content-inner">
@@ -430,8 +433,9 @@
                 </div>
               </div>
              </div>
-             
+             </div>
             </div>
+            
         </main>
     <!-- Create event dialog-->
    </div>
@@ -576,70 +580,66 @@
      </div>
     </form>
    </dialog>
-   <template data-template="month-calender">
-    <div class="month-calender"data-month-calender>
-                <ul class="day-list">
-                  <li class="days">Sunday</li>
-                  <li class="days">Monday</li>
-                  <li class="days">Tuesday</li>
-                  <li class="days">Webnesday</li>
-                  <li class="days">Thursday</li>
-                  <li class="days">Friday</li>
-                  <li class="days">Saturday</li>
-                </ul>
-                <div class="day-list-wrap">
-                    <ul class="month-calender-day-list" data-month-calender-day-list>
-                      <li class="month-calender-day">
-                        <button class="month-calender-day-label">30</button>
-                        <div class="month-calender-day-event">
-                            <ul class="event-list">
-                              <li class="event-list-item">
-                                <button class="event event-filled">
-                                  <span></span>
-                                  <span class="event-title">My first event
-                                  </span>
-                                </button>
-                              </li>
-                              <li class="event-list-item">
-                                <button class="event ">
-                                  <span class="event-color"></span>
-                                  <span class="event-title">My second event
-                                  </span>
-                                </button>
-                              </li>
-                            </ul>
-                        </div>
-                      </li>
-                      <!-- day of month-->
-                      
+ 
+   <script>
+const calendarTemplate = document.querySelector('[data-template="month-calender"]');
+const dayTemplate = document.querySelector('[data-template="month-calender-day"]');
+const calendarContainer = document.getElementById("calendarRoot");
+let currentDate = new Date();
 
-                    </ul>
-                </div>
-              </div>
-   </template>
-   <template data-template="month-calender-day">
-        <li class="month-calender-day" fsts-month-calender-day>
-                        <button class="month-calender-day-label" data-month-calender-day-label></button>
-                        <div class="month-calender-day-event" data-calneder-list-wrapper>
-                            <ul class="event-list" data-event-list></ul>
-                        </div>
-                      </li>
-   </template>
-   <template data-template="event-list-item">
-      <li class="event-list-item" data-event-list-item>
-          
-         </li>
-   </template>
-   <template data-template="event">
-    <button class="event" data-event>
-      <span class="event-color"></span>
-       <span class="event-title" data-event-title>
-         </span>
-        <span class="event-time">
-          
-         </span>
-       </button>
-   </template>
+function renderMonth(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const firstDayOfWeek = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const calendarClone = calendarTemplate.content.cloneNode(true);
+  const daysList = calendarClone.querySelector('[data-month-calender-day-list]');
+
+  // Fill blanks
+  for (let i = 0; i < firstDayOfWeek; i++) {
+    const emptyDay = dayTemplate.content.cloneNode(true);
+    emptyDay.querySelector('[data-month-calender-day-label]').textContent = "";
+    daysList.appendChild(emptyDay);
+  }
+
+  // Fill days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayClone = dayTemplate.content.cloneNode(true);
+    const label = dayClone.querySelector('[data-month-calender-day-label]');
+    
+    label.textContent = day;
+
+    // Optional: highlight today
+    const today = new Date();
+    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+      label.style.backgroundColor = "#ffeeba";
+    }
+
+    daysList.appendChild(dayClone);
+  }
+ calendarClone.querySelector('#monthYearLabel').textContent = 
+    date.toLocaleString('default', { month: 'long', year: 'numeric' });
+  // Clear previous calendar and insert new
+  calendarContainer.innerHTML = "";
+  calendarContainer.appendChild(calendarClone);
+}
+
+renderMonth(currentDate);
+
+document.addEventListener("click", (e) => {
+  if (e.target.id === "prevMonth") {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderMonth(currentDate);
+  } else if (e.target.id === "nextMonth") {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderMonth(currentDate);
+  }
+});
+
+
+</script>
+
 </body>
 </html>
 

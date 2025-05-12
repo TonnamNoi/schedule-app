@@ -72,6 +72,7 @@ body{
     height: 100vh;
 }
 
+
 @media (min-width: 768px){
     .a{
         display: grid;
