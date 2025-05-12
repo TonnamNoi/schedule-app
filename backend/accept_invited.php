@@ -18,5 +18,5 @@ $stmt->close();
 $conn->close();
 
 // Redirect user to meeting page
-header("Location: ../frontend/meeting_page.php?meeting_id=$meeting_id");
+header("Location: ../frontend/availability-calender.php?meeting_id=$meeting_id");
 exit();
