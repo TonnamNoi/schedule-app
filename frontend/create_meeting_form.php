@@ -22,7 +22,7 @@ $_SESSION['last_activity'] = time();
 
 
 // Connect to database
-$conn = new mysqli("localhost", "root", "root", "meeting_app"); // update db name
+$conn = new mysqli("localhost", "root", "", "meeting_app"); // update db name
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);

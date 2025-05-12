@@ -9,7 +9,26 @@ require_once '../backend/db.php';
 
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
-$meeting_id = isset($_GET['meeting_id']) ? intval($_GET['meeting_id']) : 0;
+if (isset($_GET['meeting_id'])) {
+    $meeting_id = intval($_GET['meeting_id']);
+} else {
+    $stmt = $conn->prepare("SELECT id FROM meetings WHERE owner_id = ? LIMIT 1");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($default_meeting_id);
+    if ($stmt->fetch()) {
+        header("Location: availability-calender.php?meeting_id=" . $default_meeting_id);
+        exit;
+    } else {
+        echo "No meetings found for this user.";
+        exit;
+    }
+}
+
+$stmt = $conn->prepare("SELECT id, title FROM meetings WHERE owner_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$meeting_result = $stmt->get_result();
 
 if ($meeting_id <= 0) {
     echo "Invalid meeting ID.";
@@ -68,15 +87,73 @@ $all_events = array_merge($user_slots, $overlap_slots);
     <title>Availability Calendar</title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-weight: 600;
+            margin: 20px 30px;
         }
 
         #calendar {
-            max-width: 900px;
-            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 20px auto;
+            padding: 20px;
+            width: calc(100% - 60px);
+            /* Full width with margin */
+            max-width: 1400px;
         }
+
+        form {
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 10px 0 30px;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #savebutton {
+            background-color: #28a745;
+        }
+
+        #savebutton:hover {
+            background-color: #1e7e34;
+        }
+
+        #editButton {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        #editButton:hover {
+            background-color: #e0a800;
+        }
+
+        .fc {
+            font-size: 14px;
+        }
+    </style>
+
     </style>
 </head>
 
@@ -85,6 +162,17 @@ $all_events = array_merge($user_slots, $overlap_slots);
     <button onclick="window.location.href='dashboard.php'">← Back</button>
 
     <h2>Hello, <?= htmlspecialchars($username) ?> – Select Your Available Time Slots</h2>
+
+    <form id="meetingSwitchForm" method="GET" action="availability-calender.php" style="margin: 0 30px 10px;">
+        <label for="meeting_id">Select Meeting:</label>
+        <select name="meeting_id" id="meeting_id" onchange="document.getElementById('meetingSwitchForm').submit();">
+            <?php while ($row = $meeting_result->fetch_assoc()): ?>
+                <option value="<?= $row['id'] ?>" <?= ($row['id'] == $meeting_id) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($row['title']) ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
+    </form>
 
     <form method="POST" action="../backend/save_availability.php">
         <input type="hidden" name="meeting_id" value="<?= $meeting_id ?>">

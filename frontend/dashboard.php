@@ -100,10 +100,6 @@ $conn->close();
                 <a href="./create_meeting_form.php" class="btn">Create a Meeting</a>
             </div>
 
-            <div class="card">
-                <h2>Your Recent Activities</h2>
-                <p>No recent activities. Stay active by scheduling meetings or inviting members.</p>
-            </div>
         </section>
     </div>
 </div>
