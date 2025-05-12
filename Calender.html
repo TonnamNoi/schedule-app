@@ -41,6 +41,7 @@
             </div>
             </div>
             <!-- day-->
+  
             <div class="calender" data-calender>
               <div class="month-calender fiveweek"data-month-calender>
                  <template data-template="month-calender">
@@ -98,10 +99,10 @@
          </span>
        </button>
    </template>
-                </div>
-             
+    </div>
+             <template id="appointment-room-template"></template>
               <!-- Owner and user part-->
-             <div class="week-calender week-calender--day" data-week-calender style="display: none;">
+             <div class="week-calender week-calender--day" data-week-calender data-date="" style="display: none;">
               <ul class="day-of-week-list"> 
                 <li class="day-of-week">
                   <button class="day-of-week-button">
@@ -150,12 +151,7 @@
               <ul class="tab-all-day">
                <li class="tab-all-day-item">
                 <ul class="event-list">
-                  <li class="event-list-item">
-                    <button class="event event-filled">
-                      <span class="event-color"></span>
-                      <span class="event-title">My first event</span>
-                    </button>
-                  </li>
+                 
                  
                 </ul>
                 
@@ -278,15 +274,7 @@
                       <div class="cell-item"></div>
                       <div class="cell-item"></div>
                       <div class="cell-item"></div>
-                      <button class="event event-filled event-dynamic">
-                        <span class="event-color"></span>
-                        <span class="event-title">My second event
-                        </span>
-                        <span class="event-time">
-                          <time>3:00AM</time>-
-                          <time>6:00AM</time>
-                        </span>
-                      </button>
+                      
                     </div> 
 
                   </div>
@@ -435,6 +423,7 @@
              </div>
              </div>
             </div>
+       </template>
             
         </main>
     <!-- Create event dialog-->
@@ -607,7 +596,6 @@ function renderMonth(date) {
   for (let day = 1; day <= daysInMonth; day++) {
     const dayClone = dayTemplate.content.cloneNode(true);
     const label = dayClone.querySelector('[data-month-calender-day-label]');
-    
     label.textContent = day;
 
     // Optional: highlight today
@@ -636,6 +624,35 @@ document.addEventListener("click", (e) => {
     renderMonth(currentDate);
   }
 });
+document.querySelectorAll('.day').forEach(dayEl => {
+  dayEl.addEventListener('click', () => {
+    const date = dayEl.getAttribute('data-date'); // e.g. 2025-05-12
+    const container = document.getElementById('appointment-rooms-container');
+
+    // Hide all other appointment rooms
+    container.querySelectorAll('.week-calender').forEach(el => {
+      el.style.display = 'none';
+    });
+
+    // Check if this appointment room already exists
+    let existingRoom = container.querySelector(`.week-calender[data-date="${date}"]`);
+
+    if (!existingRoom) {
+      // Clone from template
+      const template = document.getElementById('appointment-room-template');
+      const clone = template.content.cloneNode(true);
+      const room = clone.querySelector('.week-calender');
+      room.setAttribute('data-date', date);
+      room.style.display = 'block';
+      container.appendChild(clone);
+    } else {
+      // Show the existing room
+      existingRoom.style.display = 'block';
+    }
+  });
+});
+
+
 
 
 </script>
